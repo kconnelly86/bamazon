@@ -1,0 +1,15 @@
+{
+  "name": "joins",
+  "version": "1.0.0",
+  "description": "",
+  "main": "joins.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "mysql": "^2.15.0"
+  }
+}
