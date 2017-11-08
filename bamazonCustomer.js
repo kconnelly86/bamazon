@@ -7,47 +7,30 @@ var connection = mysql.createConnection({
 	user: "root",
 	password: "root",
 	database: "bamazon"
-});//ends connection
+})//ends connection
 
-connection.connect(function(err) {
+connection.connect(function(err){
 	if (err) throw err;
-	console.log("conected as id " + connection.threadId + "\n");
-	start();
-});
+	console.log("Connection Successful");
+	makeTable();
+})  
 
 
-function auction() {
-  inquirer
-    .prompt([
-    {
-      name: "post",
-      type: "input",
-      message: "ID of the product you would like to buy?"
-  	},
-     name: "bid",
-      type: "input",
-      message: "how many units of the product they would like to buy?"
-  	}
-    
-    .then(function(answer) {
-      // based on their answer, either call the bid or the post functions
-      if (answer.post.toUpperCase() === "POST") {
-        postAuction();
-      }
-      
-      else {
-      	bidAuction();
-      }
-    });
-])
+var makeTable = function(){
+	connection.query("SELECT * FROM products", function(err,res){
+
+    	for (var i = 0; i < res.length; i++) {
+    		
+    	console.log(res[i].itemid+" || "
+    		+res[i].productname+" || "+res[i].departmentname+" || "
+    		+res[i].price+" || "+res[i].stockquantity+"\n");
+
+    	}//end of for loop
+
+	});//ends query
+
+}//closes makeTable
 
 
-function postAuction() {
-	connection.query("SELECT * FROM products", function(err, res) {
-	if (err) throw err;
-	console.log(res);	
-	})
-}
-}
 
 
